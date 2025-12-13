@@ -1,10 +1,12 @@
 // Importing all necessary modules
+import dotenv from 'dotenv';
+dotenv.config();
 import express from "express";
 import { createServer } from "node:http";
 import { Server } from "socket.io";
 import mongoose from "mongoose";
 import cors from "cors";
-import { connectToSocket } from "./controllers/socketManager.js";
+import { connectToSocket } from "./src/controllers/socketManager.js";
 import { connect } from "node:http2";
 
 const app = express();
@@ -31,10 +33,7 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
 const start = async () => {
     // Connecting mongodb
-    const connectionDb = await mongoose.connect(process.env.MONGO_URI, {
-        useNewUrlParser: true,
-        useUnifiedTopology: true,
-    });
+    const connectionDb = await mongoose.connect(process.env.MONGODB_URI);
     console.log(`Mongo connected DB HOST ${connectionDb.connection.host}`);
     server.listen(app.get("port"), () => {
         console.log("Listening on port 8000");
