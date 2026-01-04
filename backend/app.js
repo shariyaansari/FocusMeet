@@ -8,6 +8,7 @@ import mongoose from "mongoose";
 import cors from "cors";
 import { connectToSocket } from "./src/controllers/socketManager.js";
 import { connect } from "node:http2";
+import userRoutes from "./src/routes/users.routes.js";
 
 const app = express();
 
@@ -21,11 +22,16 @@ const server = createServer(app);
 const io = connectToSocket(server);
 
 // Set port for the io server
-app.set("port", process.env.PORT || 8000);
+app.set("port", process.env.PORT || 3000);
 app.use(cors());
 // Use limit to avoid too much payload
 app.use(express.json({ limit: "40kb" }));
 app.use(express.urlencoded({ limit: "40kb", extended: true }));
+
+// Give a version to the api for the users 
+app.use("/api/v1/users", userRoutes);
+// And then to roll out new features we can create a new version like /api/v2/users
+// app.use("/api/v2/users", newUserRoutes);
 
 // app.get("/home", (req, res) => {
 // 	res.json({ hello: "world" });
@@ -33,10 +39,10 @@ app.use(express.urlencoded({ limit: "40kb", extended: true }));
 
 const start = async () => {
     // Connecting mongodb
-    const connectionDb = await mongoose.connect(process.env.MONGODB_URI);
+    const connectionDb = await mongoose.connect(process.env.MONGO_URI);
     console.log(`Mongo connected DB HOST ${connectionDb.connection.host}`);
     server.listen(app.get("port"), () => {
-        console.log("Listening on port 8000");
+        console.log("Listening on port 3000");
     });
 };
 start();
