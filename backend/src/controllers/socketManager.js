@@ -1,5 +1,6 @@
-import { connection } from "mongoose";
+import mongoose from "mongoose";
 import { Server } from "socket.io";
+const connection = mongoose.connection;
 let connections = {};
 let messages = {};
 let timeOnline = {};

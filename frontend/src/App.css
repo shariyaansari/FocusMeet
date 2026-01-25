@@ -1,42 +1,52 @@
-#root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+.landingPageContainer{
+    width: 100vw;
+  height: 100vh;
+  background-image: url("/background.png");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  color: white;
+}
+.landingPageContainer nav{
+    padding-inline: 1.4rem;
+    padding-block: 1.6rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+.landingPageContainer h2{
+    font-size: 2rem;
+    font-weight: 500;
+}
+.landingPageContainer nav .navlist{
+    display: flex;
+    gap: 1.6rem;
+    cursor: pointer;
+}
+.landingMainContainer{
+    display: flex;
+    justify-content: space-between;
+    padding-inline: 3rem;
+    height: 80vh;
+    align-items: center;
 }
 
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
+.landingMainContainer>div:nth-child(1) div[role = 'button']{
+    /* When we use scae things get distort because scale is not responsive */
+    /* transform: scale(2); */
+    font-size: 2.2rem;
+    background: #D97500;
+    width: fit-content;
+    padding: 0.5rem;
+    border-radius: 20px;
+    margin-top: 1.9rem;
 }
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
+.landingMainContainer>div:nth-child(1) div[role = 'button'] a{
+    text-decoration: none;
+    color: white;
+    font-size: 1.7rem;
 }
-.logo.react:hover {
-  filter: drop-shadow(0 0 2em #61dafbaa);
-}
-
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  a:nth-of-type(2) .logo {
-    animation: logo-spin infinite 20s linear;
-  }
-}
-
-.card {
-  padding: 2em;
-}
-
-.read-the-docs {
-  color: #888;
+.landingMainContainer>div:nth-child(2) img{
+    height:65vh;
+    width: auto;
 }
